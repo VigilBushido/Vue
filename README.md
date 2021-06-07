@@ -1,2 +1,2 @@
 # Vue
-initial meh repository 
+initial repository 
