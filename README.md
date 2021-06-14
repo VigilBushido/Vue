@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # test-app
 
 ## Project setup
@@ -32,3 +33,7 @@ yarn run test:unit
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+=======
+# Vue
+initial repository 
+>>>>>>> 60aef93574e3c02ddf18b8f9e0d83514e740704e
