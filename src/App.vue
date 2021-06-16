@@ -1,20 +1,18 @@
 <template>
   <div id="app">
     <div class="container">
-      <Todos />
+      <Exercise />
     </div>
-    <!-- <Exercise /> component -->
   </div>
 </template>
 
 <script>
-import Todos from './components/Todos.vue'
-//import Exercise from './components/Exercise1-01'  //Exercise,
+import Exercise from './components/Exercise1-01'
 
 export default {
   name: 'app',
   components: {
-    Todos,
+    Exercise,
   },
 }
 </script>
