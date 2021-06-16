@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <div class="container">
-      <Exercise />
-    </div>
+    <Exercise />
   </div>
 </template>
 
