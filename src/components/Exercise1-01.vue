@@ -9,7 +9,7 @@
       </li>
     </ul>
     <ul>
-      <li v-for="(item, n) in interest" :key="n">
+      <li v-for="(item, n) in interest1" :key="n">
         {{ item }}
       </li>
     </ul>
@@ -38,6 +38,15 @@
       <li>Name: {{ name }}</li>
       <li>Preference: {{ language }}</li>
     </ul>
+    <h1> Looping through array of objects</h1>
+    <ul>
+      <li v-for="(item, n) in interests2" :key="n">
+        {{ item.title }}
+        <ol>
+          <li v-for="(fav, m) in item.favorite" :key="m"> {{ fav }}</li>
+        </ol>
+      </li>
+    </ul>
   </section>
 </template>
 
@@ -58,10 +67,24 @@ export default {
       },
       name: '',
       language: '',
-      interest: [
+      interest1: [
         'Giannis Antekounpo',
         'Path of Exile',
         'Full Stack Java Programming',
+      ],
+      interests2: [
+        {
+          title: 'TV',
+          favorite: ['Designated Survivor', 'Spongebob'],
+        },
+        {
+          title: 'Games',
+          favorite: ['CS:GO'],
+        },
+        {
+          title: 'Sports',
+          favorite: [],
+        },
       ],
     }
   },
