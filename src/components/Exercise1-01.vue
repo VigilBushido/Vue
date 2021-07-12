@@ -42,7 +42,7 @@
     <ul>
       <li v-for="(item, n) in interests2" :key="n">
         {{ item.title }}
-        <ol>
+        <ol v-if="item.favorite.length > 0">
           <li v-for="(fav, m) in item.favorite" :key="m"> {{ fav }}</li>
         </ol>
       </li>
