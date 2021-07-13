@@ -1,5 +1,16 @@
 <template>
   <section>
+    <!--- So it can contain multiple div elements -->
+
+    <h1>Returning Methods</h1>
+
+    <div>Cart({{ totalItems }}) {{ formatCurrency(totalCost) }} </div>
+
+    <ul>
+      <li v-for="n in 5" :key="n">
+        <a href="#" @click="addToCart(n)">Add {{ formatCurrency(n) }}</a>
+      </li>
+    </ul>
     <h1 v-show="true" v-once v-text="text">Loading...</h1>
     <h2 v-show="false" v-html="html" />
     <h3>Looping through arrays</h3>
@@ -47,11 +58,28 @@
         </ol>
       </li>
     </ul>
+    <div id="Trigger">
+      <h1>Triggering Vue Methods</h1>
+      <ul>
+        <li v-for="n in 5" :key="n">
+          <a href="#Trigger" @click="triggerAlert(n)">Trigger {{ n }} </a>
+        </li>
+      </ul>
+    </div>
   </section>
 </template>
 
 <script>
 export default {
+  methods: {
+    triggerAlert(n) {
+      alert(`${n} has been clicked`)
+    },
+    addToCart(n) {
+      this.totalItems = this.totalItems + 1
+      this.totalCost = this.totalCost + n
+    },
+  },
   data() {
     return {
       // v-text
@@ -86,6 +114,11 @@ export default {
           favorite: [],
         },
       ],
+      totalItems: 0,
+      totalCost: 0,
+      formatCurrency(val) {
+        return `$${val.toFixed(2)}`
+      },
     }
   },
 }
@@ -124,7 +157,12 @@ h2 {
   font-weight: normal;
 }
 a {
-  display: block;
-  margin-top: 40px;
+  margin-top: 10px;
+  display: inline-block;
+  background: #4fc08d;
+  border-radius: 10px;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
 }
 </style>
