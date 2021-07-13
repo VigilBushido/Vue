@@ -1,16 +1,26 @@
 <template>
   <section>
     <!--- So it can contain multiple div elements -->
+    <div class="Lifecycle">
+      <h1>Vue Lifecycle hooks</h1>
+      <ul>
+        <li v-for="(item, n) in list" :key="n">
+          {{ item }} <b @click="deleteItem(item)">Delete</b>
+        </li>
+      </ul>
+    </div>
 
-    <h1>Returning Methods</h1>
+    <div class="ReturnMethods">
+      <h1>Returning Methods</h1>
 
-    <div>Cart({{ totalItems }}) {{ formatCurrency(totalCost) }} </div>
+      <div>Cart({{ totalItems }}) {{ formatCurrency(totalCost) }} </div>
+      <ul>
+        <li v-for="n in 5" :key="n">
+          <a href="#" @click="addToCart(n)">Add {{ formatCurrency(n) }}</a>
+        </li>
+      </ul>
+    </div>
 
-    <ul>
-      <li v-for="n in 5" :key="n">
-        <a href="#" @click="addToCart(n)">Add {{ formatCurrency(n) }}</a>
-      </li>
-    </ul>
     <h1 v-show="true" v-once v-text="text">Loading...</h1>
     <h2 v-show="false" v-html="html" />
     <h3>Looping through arrays</h3>
@@ -79,9 +89,24 @@ export default {
       this.totalItems = this.totalItems + 1
       this.totalCost = this.totalCost + n
     },
+    deleteItem(value) {
+      this.list = this.list.filter(item => item !== value)
+    },
   },
   data() {
     return {
+      list: [
+        'League of Legends',
+        'Clash of Clans',
+        'Path of Exile',
+        'Dead Space',
+        'Resident Evil 4',
+        'Battlefield 2',
+        'Halo Wars',
+        'Fallout 4',
+        'BF 2042',
+        'Life is Fuedal',
+      ],
       // v-text
       text: 'Directive text',
       // v-html
@@ -121,6 +146,26 @@ export default {
       },
     }
   },
+  beforeCreate() {
+    console.log('beforeCreate: data is static, thats it')
+  },
+  created() {
+    console.log('created: data and events ready, but no DOM')
+  },
+  beforeUpdate() {
+    alert(
+      'beforeUpdate: we know an update is about to happen, and have the data'
+    )
+  },
+  updated() {
+    alert('updated: virtual DOM will update after you click OK')
+  },
+  beforeDestroy() {
+    alert('beforeDestroy: about to blow up this component')
+  },
+  destroyed() {
+    alert('destroyed: this component has been destroyed')
+  },
 }
 </script>
 
@@ -150,6 +195,30 @@ export default {
     + li {
       margin-top: 20px;
     }
+  }
+}
+
+.Lifecycle {
+  ul {
+    padding-left: 0;
+  }
+  li {
+    display: block;
+    list-style: none;
+
+    + li {
+      margin-top: 10px;
+    }
+  }
+  b {
+    display: inline-block;
+    background: rgb(235, 50, 50);
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-size: 10px;
+    color: white;
+    text-transform: uppercase;
+    text-decoration: none;
   }
 }
 h2 {
