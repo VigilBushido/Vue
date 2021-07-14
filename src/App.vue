@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <Exercise />
+    <!-- <Exercise /> -->
+    <ShoppingCart />
   </div>
 </template>
 
 <script>
-import Exercise from './components/Exercise1-01'
+//import Exercise from './components/Exercise1-01'
+import ShoppingCart from './components/ShoppingCart'
 
 export default {
   name: 'app',
   components: {
-    Exercise,
+    ShoppingCart, //Exercise,
   },
 }
 </script>
