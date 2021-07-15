@@ -13,18 +13,18 @@
     <label>
       Level of Priority:
       <select name="priority" v-model="priority">
-        <option value="Urgent">Urgent</option>
-        <option value="Immediate">Immediate</option>
-        <option value="Casual">Casual</option>
-        <option value="Can Wait">Can Wait</option>
+        <option value="- Urgent">- Urgent</option>
+        <option value="- Immediate">- Immediate</option>
+        <option value="- casual">- Casual</option>
+        <option value="- can Wait">- Can Wait</option>
       </select>
     </label>
 
     <ul class="overview">
-      <li><strong>Shopping List</strong></li>
       <li>Item To Buy: {{ input }}</li>
-      <li>Priority Level: {{ priority }}</li>
+      <li>Priority Level {{ priority }}</li>
     </ul>
+
     <!--     <ul class="left">
       <strong>Official List</strong>
       <li v-for="(item, n) in shoppingList" :key="n">
@@ -33,11 +33,10 @@
     </ul> -->
     <ul v-if="shoppingList">
       <li v-for="(item, i) in shoppingList" :key="i" class="item"
-        ><span> {{ item }}</span>
+        ><span> {{ item }} {{ priority }}</span>
         <button class="button--remove" @click="deleteItem(i)">Remove</button>
       </li>
     </ul>
-
     <br />
     <button class="button--delete" @click="deleteItem()">Delete ALL</button>
   </div>
