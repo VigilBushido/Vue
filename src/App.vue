@@ -1,18 +1,20 @@
 <template>
   <div id="app">
     <!-- <Exercise /> -->
-    <ShoppingCart />
+    <!-- <ShoppingCart /> -->
+    <Exercise2 />
   </div>
 </template>
 
 <script>
 //import Exercise from './components/Exercise1-01'
-import ShoppingCart from './components/ShoppingCart'
+import Exercise2 from './components/Exercise2-01'
+//import ShoppingCart from './components/ShoppingCart'
 
 export default {
   name: 'app',
   components: {
-    ShoppingCart, //Exercise,
+    Exercise2, //ShoppingCart, //Exercise,
   },
 }
 </script>
