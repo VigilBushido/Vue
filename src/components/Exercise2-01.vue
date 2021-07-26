@@ -6,12 +6,22 @@
 
       <h3 class="output">{{ fullName }}</h3>
     </div>
-    <div class="container2">
+    <div class="container">
       <input type="number" v-model="incrementOne" />
       <h3> Get input: {{ incrementOne }}</h3>
 
       <h5>Set division: {{ divideByTwo }}</h5>
     </div>
+    <div class="container">
+      <h1>Shop Watcher</h1>
+      <div>
+        Black Friday Sale
+        <strike> was {{ oldDiscount }}%</strike>
+        <strong> Now {{ discount }}% OFF</strong>
+      </div>
+    </div>
+    <br />
+    <a href="#" @click="updateDiscount">Increase Discount!</a>
   </section>
 </template>
 
@@ -23,6 +33,8 @@ export default {
       lastName: '',
       count: -1,
       divideByTwo: 0,
+      oldDiscount: 0,
+      discount: 5,
     }
   },
   computed: {
@@ -41,7 +53,41 @@ export default {
       },
     },
   },
+  watch: {
+    discount(newValue, oldValue) {
+      this.oldDiscount = oldValue
+    },
+  },
+  methods: {
+    updateDiscount() {
+      this.discount = this.discount + 5
+    },
+  },
 }
 </script>
 
-<style></style>
+<style lang="scss">
+.container {
+  margin: 0 auto;
+  padding: 30px;
+  max-width: 600px;
+  font-family: 'Avenir', Helvetica, sans-serif;
+  margin: 0;
+}
+input {
+  padding: 10px 6px;
+  margin: 20px 10px 10px 0;
+}
+.output {
+  font-size: 16px;
+}
+a {
+  display: inline-block;
+  background: rgb(235, 50, 50);
+  border-radius: 10px;
+  font-size: 14px;
+  color: white;
+  padding: 10px 20px;
+  text-decoration: none;
+}
+</style>
