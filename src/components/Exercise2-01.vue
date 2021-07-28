@@ -22,6 +22,16 @@
     </div>
     <br />
     <a href="#" @click="updateDiscount">Increase Discount!</a>
+    <div class="container">
+      <h1>Organization Watcher</h1>
+      <div>
+        Change of Name
+        <strong> : {{ organization.name }}</strong>
+        <strong> : {{ organization.employees }}</strong>
+      </div>
+    </div>
+    <br />
+    <a href="#" @click="changeName">Add Optimized!</a>
   </section>
 </template>
 
@@ -35,6 +45,11 @@ export default {
       divideByTwo: 0,
       oldDiscount: 0,
       discount: 5,
+      //object from which we watch keys for changes
+      organization: {
+        name: 'None',
+        employees: ['Sergio', 'Maria'],
+      },
     }
   },
   computed: {
@@ -57,10 +72,20 @@ export default {
     discount(newValue, oldValue) {
       this.oldDiscount = oldValue
     },
+    'organization.name': {
+      handler: function(v) {
+        this.sendIntercomData()
+      },
+      deep: true,
+      immediate: true,
+    },
   },
   methods: {
     updateDiscount() {
       this.discount = this.discount + 5
+    },
+    changeName() {
+      this.organization.name = 'Optimized PC Innovations'
     },
   },
 }
