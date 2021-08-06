@@ -32,6 +32,22 @@
     </div>
     <br />
     <a href="#" @click="changeName">Add Optimized!</a>
+    <div class="container">
+      <h1>Methods vs watchers vs computed props</h1>
+
+      <div class="col">
+        <input
+          type="text"
+          placeholder="Search with methd"
+          v-model="input"
+          @keyup="searchMethod"
+        />
+
+        <ul>
+          <li v-for="(item, i) in methodFilterList" :key="i"> {{ item }} </li>
+        </ul>
+      </div>
+    </div>
   </section>
 </template>
 
@@ -50,6 +66,17 @@ export default {
         name: 'None',
         employees: ['Sergio', 'Tasha'],
       },
+      frameworkList: [
+        'Vue',
+        'React',
+        'Backbone',
+        'Ember',
+        'Knockout',
+        'jQuery',
+        'Angular',
+      ],
+      input: '',
+      methodFilterList: [],
     }
   },
   computed: {
@@ -80,12 +107,21 @@ export default {
       immediate: true,
     },
   },
+  created() {
+    this.searchMethod()
+  },
   methods: {
     updateDiscount() {
       this.discount = this.discount + 5
     },
     changeName() {
       this.organization.name = 'Optimized PC Innovations'
+    },
+    // Method for frameworkList
+    searchMethod() {
+      this.methodFilterList = this.frameworkList.filter(item =>
+        item.toLowerCase().includes(this.input.toLowerCase())
+      )
     },
   },
 }
