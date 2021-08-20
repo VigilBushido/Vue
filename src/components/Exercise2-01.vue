@@ -115,7 +115,7 @@ export default {
       this.discount = this.discount + 5
     },
     changeName() {
-      this.organization.name = 'Optimized PC Innovations'
+      this.organization.name = 'Optimized PC Innovate'
     },
     // Method for frameworkList
     searchMethod() {
