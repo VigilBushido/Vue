@@ -64,7 +64,7 @@ export default {
       //object from which we watch keys for changes
       organization: {
         name: 'None',
-        employees: ['Sergio', 'John', 'Omar', 'Maria'],
+        employees: ['Sergio', 'John', 'Omar', 'Maria', 'Tasha'],
       },
       frameworkList: [
         'Vue',
