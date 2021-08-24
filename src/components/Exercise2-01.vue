@@ -32,19 +32,40 @@
     </div>
     <br />
     <a href="#" @click="changeName">Add Optimized!</a>
+
     <div class="container">
       <h1>Methods vs watchers vs computed props</h1>
 
       <div class="col">
         <input
           type="text"
-          placeholder="Search with methd"
+          placeholder="Search with method"
           v-model="input"
           @keyup="searchMethod"
         />
 
         <ul>
-          <li v-for="(item, i) in methodFilterList" :key="i"> {{ item }} </li>
+          <li v-for="(item, i) in methodFilterList" :key="i">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <input
+          type="text"
+          placeholder="Search with computed"
+          v-model="input2"
+        />
+
+        <ul>
+          <li v-for="(item, i) in computedList" :key="i">{{ item }}</li>
+        </ul>
+      </div>
+
+      <div class="col">
+        <input type="text" placeholder="Search with watcher" v-model="input3" />
+
+        <ul>
+          <li v-for="(item, i) in watchFilterList" :key="i">{{ item }}</li>
         </ul>
       </div>
     </div>
@@ -77,6 +98,11 @@ export default {
       ],
       input: '',
       methodFilterList: [],
+      // Computed
+      input2: '',
+      // Watcher
+      input3: '',
+      watchFilterList: [],
     }
   },
   computed: {
@@ -94,6 +120,12 @@ export default {
         this.divideByTwo = val / 2
       },
     },
+    //using computed prop to do searchMethod
+    computedList() {
+      return this.frameworkList.filter(item => {
+        return item.toLowerCase().includes(this.input2.toLowerCase())
+      })
+    },
   },
   watch: {
     discount(newValue, oldValue) {
@@ -104,6 +136,15 @@ export default {
         this.sendIntercomData()
       },
       deep: true,
+      immediate: true,
+    },
+    //watchers vs computed props vs methods
+    input3: {
+      handler() {
+        this.watchFilterList = this.frameworkList.filter(item =>
+          item.toLowerCase().includes(this.input3.toLowerCase())
+        )
+      },
       immediate: true,
     },
   },
@@ -134,6 +175,11 @@ export default {
   max-width: 600px;
   font-family: 'Avenir', Helvetica, sans-serif;
   margin: 0;
+}
+.col {
+  width: 33%;
+  height: 100%;
+  float: left;
 }
 input {
   padding: 10px 6px;
