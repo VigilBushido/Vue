@@ -1,6 +1,15 @@
 <template>
   <section>
     <div class="container">
+      <h1>Async fetch</h1>
+
+      <button @click="getApi()">{{
+        loading ? 'Loading...' : 'Learn something profound'
+      }}</button>
+
+      <blockquote v-if="quote">{{ quote }}</blockquote>
+    </div>
+    <div class="container">
       <input v-model="firstName" placeholder="First name" />
       <input v-model="lastName" placeholder="Last name" />
 
@@ -73,6 +82,8 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data() {
     return {
@@ -103,6 +114,9 @@ export default {
       // Watcher
       input3: '',
       watchFilterList: [],
+      // Async Methods and Data Fetching - Data Variables
+      loading: false,
+      axiosResponse: {},
     }
   },
   computed: {
@@ -125,6 +139,12 @@ export default {
       return this.frameworkList.filter(item => {
         return item.toLowerCase().includes(this.input2.toLowerCase())
       })
+    },
+    // Async Methods and Data Fetching - Computed
+    quote() {
+      return this.axiosResponse && this.axiosResponse.slip
+        ? this.axiosResponse.slip.advice
+        : null
     },
   },
   watch: {
@@ -164,6 +184,15 @@ export default {
         item.toLowerCase().includes(this.input.toLowerCase())
       )
     },
+    async getApi() {
+      this.loading = true
+      return axios.get('https://api.adviceslip.com/advice').then(response => {
+        this.axiosResponse = response.data
+        setTimeout(() => {
+          this.loading = false
+        }, 4000)
+      })
+    },
   },
 }
 </script>
@@ -196,5 +225,16 @@ a {
   color: white;
   padding: 10px 20px;
   text-decoration: none;
+}
+blockquote {
+  position: relative;
+  width: 100%;
+  margin: 50px auto;
+  padding: 1.2em 30px 1.2em 30px;
+  background: #ededed;
+  border-left: 8px solid #78c0a8;
+  font-size: 24px;
+  color: #555555;
+  line-height: 1.6;
 }
 </style>
